@@ -1,0 +1,29 @@
+<h1>Listing products</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th>Quantity</th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= image_tag "thumb.jpg" %></td>
+    <td><%=h product.name %></td>
+    <td><%=h product.description %></td>
+    <td><%=h product.category_name %></td>
+    <td>
+      <% form_tag my_purchases_path do -%>
+        <div style="margin-left:30px;">
+          <%=hidden_field_tag :product_id, product.id %>
+          <%=text_field_tag :how_many, '1', :size => 4 %>
+          <%= submit_tag 'Add to cart' %>
+        </div>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>

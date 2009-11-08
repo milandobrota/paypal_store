@@ -1,6 +1,4 @@
 class MyPurchasesController < ApplicationController
-
-  layout nil
   
   before_filter :find_cart  
   

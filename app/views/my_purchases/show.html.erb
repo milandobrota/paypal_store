@@ -1,22 +1,29 @@
 <h1>Shopping Cart</h1>
-<table>
-  <tr>
-    <th>Product</th>
-    <th>Name</th>
-    <th>Quantity</th>
-    <th>Category</th>
-    <th></th>
-  </tr>
-  <% @cart.products_with_quantities.each do |product_with_quantity| %>
+  <div style="width:500px;">
+    <table>
       <tr>
-        <td><%= image_tag "thumb.jpg" %></td>
-        <td><%=h product_with_quantity[0].name %></td>
-        <td><%=h product_with_quantity[1] %></td>
-        <td><%=h product_with_quantity[0].category_name %></td>
-        <td><%= button_to 'Remove', :action => 'remove', :product_id => product_with_quantity[0].id %>
-        </td>
+        <th>Product</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th></th>
       </tr>
-  <% end %>
-</table>
-<%= button_to "Continue shopping", root_path %>
+      <% @cart.products_with_quantities.each do |product_with_quantity| %>
+          <tr>
+            <td><%= image_tag "thumb.jpg" %></td>
+            <td><%=h product_with_quantity[0].name %></td>
+            <td><%=h product_with_quantity[0].category_name %></td>
+            <td><%=h product_with_quantity[1] %></td>
+            <td><%=h '%.2f' % product_with_quantity[0].price %></td>
+            <td><%= button_to 'Remove', :action => 'remove', :product_id => product_with_quantity[0].id %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+    <hr />
+    <p>Total: <%= '%.2f' % @cart.total_price %></p>
+  </div>
+<%= button_to "Checkout", '#' %>
+<%= button_to "Continue shopping", root_path, :method => 'get' %>
 <%= button_to "Empty cart", :action => 'destroy' %>

@@ -1,11 +1,21 @@
 <h1>Listing products</h1>
 
+<% form_tag root_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>  
+  </p>
+<% end %>
+
+<%= button_to "Show All", root_path, :method => 'get' %>
+
 <table>
   <tr>
     <th></th>
     <th>Name</th>
     <th>Description</th>
     <th>Category</th>
+    <th>Price</th>
     <th>Quantity</th>
   </tr>
 
@@ -15,6 +25,7 @@
     <td><%=h product.name %></td>
     <td><%=h product.description %></td>
     <td><%=h product.category_name %></td>
+    <td><%=h '%.2f' % product.price %></td>
     <td>
       <% form_tag my_purchases_path do -%>
         <div style="margin-left:30px;">
@@ -27,3 +38,7 @@
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate @products %>
+
+<%= link_to "Go to shopping cart", :controller => 'my_purchases', :action => 'show' %>

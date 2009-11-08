@@ -1,0 +1,6 @@
+SECRET = ''
+BASE_URL = ''
+RETURN_URL = BASE_URL
+NOTIFY_URL_BASE = "#{BASE_URL}/payment_notifications?secret=#{SECRET}" 
+PAYPAL_ADDRESS = 'mypaypal@gmail.com'
+CERT_ID = 'ABCD1234'

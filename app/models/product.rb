@@ -4,4 +4,13 @@ class Product < ActiveRecord::Base
   def category_name
     self.category.nil? ? "None" : self.category.name
   end
+  
+  def self.search(search, page)
+    paginate(
+      :page => page,
+      :per_page => 5,
+      :conditions => ['name like ? or description like ?', "%#{search}%", "%#{search}%"],
+      :order => 'name'
+    )
+  end
 end

@@ -3,6 +3,6 @@ class StoreController < ApplicationController
   layout nil
   
   def index
-    @products = Product.all
+    @products = Product.search(params[:search], params[:page])
   end
 end

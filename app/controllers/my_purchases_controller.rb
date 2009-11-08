@@ -6,6 +6,7 @@ class MyPurchasesController < ApplicationController
   
   def create
     @cart.add(params[:product_id], params[:how_many])
+    puts "cart after adding: #{@cart.inspect}"
     redirect_to :action => 'show'
   end
   
@@ -25,7 +26,7 @@ class MyPurchasesController < ApplicationController
   #private
   
   def find_cart
-    @cart = session[:cart] || Cart.new
+    @cart = (session[:cart] ||= Cart.new)
   end
 
 end

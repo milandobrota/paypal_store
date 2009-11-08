@@ -1,0 +1,6 @@
+<% form_tag "https://www.sandbox.paypal.com/cgi-bin/webscr" do %>
+      <%= hidden_field_tag :cmd, "_s-xclick"  %>
+      <%= hidden_field_tag :encrypted, 
+      PaymentGateway.paypal_encrypted(RETURN_URL, notify_url) %>  
+      <%= paypal_button %>
+<% end %>

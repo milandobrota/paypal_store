@@ -1,5 +1,7 @@
 log/*.log
 config/database.yml
+config/initializers/application_constants.rb
+certs/*
 tmp/**/*
 .DS_Store
 db/*.sqlite3
@@ -8,5 +10,6 @@ db/*.sqlite3
 *.erb~
 .gitignore~
 *.log~
+*.example~
 *.jpg
 *.gif

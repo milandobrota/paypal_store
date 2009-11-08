@@ -1,6 +1,9 @@
 class Product < ActiveRecord::Base
   belongs_to :category
   
+  validates_numericality_of :price
+  validates_presence_of :name
+  
   def category_name
     self.category.nil? ? "None" : self.category.name
   end
